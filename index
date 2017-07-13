@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+
+require(__DIR__ . '/vendor/autoload.php');
+require(__DIR__ . '/core/autoload.php');
+
+$config = array_merge(
+    require(__DIR__ . '/config/main.php'),
+    require(__DIR__ . '/config/main-local.php')
+);
+
+$application = new core\Application($config);
+$application->run($argv);
