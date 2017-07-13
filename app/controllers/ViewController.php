@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use app\models\Album;
 use app\models\Photo;
-use \core\controllers\BaseController;
+use core\controllers\BaseController;
 use app\models\User;
 
 /**
@@ -15,6 +15,7 @@ use app\models\User;
  */
 class ViewController extends BaseController
 {
+
     public function run($argv = [])
     {
         $userId = $this->getUser();

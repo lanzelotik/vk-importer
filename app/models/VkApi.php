@@ -2,19 +2,29 @@
 
 namespace app\models;
 
-
-class VkApi
+/**
+ * Class VkApi
+ * @package app\models
+ */
+class VkApi implements ApiInterface
 {
+
     const URL = 'https://api.vk.com/method/';
     const VERSION = 5.67;
 
     private $userId;
 
+    /**
+     * @param $userId
+     */
     public function setUserId($userId)
     {
         $this->userId = $userId;
     }
 
+    /**
+     * @return mixed
+     */
     public function getUserData()
     {
         $result = $this->sendRequest('users.get', [
@@ -24,6 +34,9 @@ class VkApi
         return $result ? $result[0] : $result;
     }
 
+    /**
+     * @return mixed
+     */
     public function getAlbums()
     {
         $result = $this->sendRequest('photos.getAlbums', [
@@ -33,6 +46,10 @@ class VkApi
         return $result ? $result->items : $result;
     }
 
+    /**
+     * @param $albumId
+     * @return mixed
+     */
     public function getPhotos($albumId)
     {
         $result = $this->sendRequest('photos.get', [
@@ -50,6 +67,11 @@ class VkApi
         return $result;
     }
 
+    /**
+     * @param $method
+     * @param $params
+     * @return mixed
+     */
     private function sendRequest($method, $params)
     {
         $requestParams = array_merge([
@@ -70,7 +92,10 @@ class VkApi
         }
     }
 
-    public static function getSizeVariants()
+    /**
+     * @return array list of available image sizes (from API documentation)
+     */
+    private static function getSizeVariants()
     {
         return [
             'photo_2560',
@@ -82,7 +107,11 @@ class VkApi
         ];
     }
 
-    public static function getBiggestPhoto($photo)
+    /**
+     * @param $photo
+     * @return string link to the biggest photo
+     */
+    private static function getBiggestPhoto($photo)
     {
         $sizeVariants = self::getSizeVariants();
         foreach ($sizeVariants as $key => $size) {

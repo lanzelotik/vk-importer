@@ -5,16 +5,26 @@ namespace core;
 use core\controllers\BaseController;
 use Medoo\Medoo;
 
+/**
+ * Class Application
+ * @package core
+ */
 class Application extends Component
 {
     private static $config;
     private static $db;
 
+    /**
+     * @return array
+     */
     public static function getConfig()
     {
         return static::$config;
     }
 
+    /**
+     * @param $config
+     */
     public function __construct($config)
     {
         static::$config = $config;
@@ -36,6 +46,9 @@ class Application extends Component
         return self::$db;
     }
 
+    /**
+     * @param array $argv
+     */
     public function run($argv = [])
     {
         $command = empty($argv[1]) ? 'help' : $argv[1];

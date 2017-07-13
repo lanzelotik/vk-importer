@@ -12,6 +12,7 @@ use core\controllers\BaseController;
  */
 class HelpController extends BaseController
 {
+
     public function run($argv = [])
     {
         $commands = $this->getCommands();
@@ -32,9 +33,10 @@ class HelpController extends BaseController
 
         if (is_dir($controllerPath)) {
             $files = scandir($controllerPath);
+            $suffixLength = strlen($this->suffix);
             foreach ($files as $file) {
-                if (!empty($file) && substr_compare($file, 'Controller.php', -14, 14) === 0) {
-                    $name = substr(basename($file), 0, -14);
+                if (!empty($file) && substr_compare($file, $this->suffix, -$suffixLength, $suffixLength) === 0) {
+                    $name = substr(basename($file), 0, -$suffixLength);
                     $alias = strtolower(trim(preg_replace('/[A-Z]/', $this->separator . '\0', $name), $this->separator));
                     $commands[$alias] = $this->getDescription($file);
                 }

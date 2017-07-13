@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\models\TaskManager;
-use \core\controllers\BaseController;
+use core\controllers\BaseController;
 
 /**
  * Create import albums and photos

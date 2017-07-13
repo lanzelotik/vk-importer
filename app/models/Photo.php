@@ -5,8 +5,17 @@ namespace app\models;
 use core\Application;
 use core\models\BaseModel;
 
+/**
+ * Class Photo
+ * @package app\models
+ */
 class Photo extends BaseModel
 {
+    /**
+     * @param $photos
+     * @return bool|\PDOStatement
+     * @throws \Exception
+     */
     public static function saveAll($photos)
     {
         $data = [];
@@ -21,6 +30,6 @@ class Photo extends BaseModel
             ];
         }
 
-        Application::getDb()->insert(self::getTableName(), $data);
+        return Application::getDb()->insert(self::getTableName(), $data);
     }
 }

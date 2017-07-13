@@ -7,8 +7,7 @@ use app\models\Album;
 use app\models\Photo;
 use app\models\ImportSimpleFactory;
 use app\models\TaskManager;
-use \core\controllers\BaseController;
-
+use core\controllers\BaseController;
 
 /**
  * Import data via API
@@ -18,6 +17,7 @@ use \core\controllers\BaseController;
  */
 class WorkerController extends BaseController
 {
+
     public function run($arv = [])
     {
         echo ' Waiting for user id. To exit press CTRL+C', PHP_EOL;

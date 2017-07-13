@@ -2,12 +2,21 @@
 
 namespace app\models;
 
-
 use core\Application;
 use core\models\BaseModel;
 
+/**
+ * Class Album
+ * @package app\models
+ */
 class Album extends BaseModel
 {
+
+    /**
+     * @param $albums
+     * @return bool|\PDOStatement
+     * @throws \Exception
+     */
     public static function saveAll($albums)
     {
         $data = [];
@@ -23,6 +32,6 @@ class Album extends BaseModel
             ];
         }
 
-        Application::getDb()->insert(self::getTableName(), $data);
+        return Application::getDb()->insert(self::getTableName(), $data);
     }
 }

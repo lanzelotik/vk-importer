@@ -4,8 +4,17 @@ namespace app\models;
 use core\Application;
 use core\models\BaseModel;
 
+/**
+ * Class User
+ * @package app\models
+ */
 class User extends BaseModel
 {
+    /**
+     * @param $users
+     * @return bool|\PDOStatement
+     * @throws \Exception
+     */
     public static function saveAll($users)
     {
         $data = [];
@@ -17,6 +26,6 @@ class User extends BaseModel
             ];
         }
 
-        Application::getDb()->insert(self::getTableName(), $data);
+        return Application::getDb()->insert(self::getTableName(), $data);
     }
 }
